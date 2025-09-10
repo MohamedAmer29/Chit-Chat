@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+body {
+  background-image: url("../public/bg.jpg");
+  @apply flex items-center justify-center h-screen;
+}
+
+.scroller {
+  &::-webkit-scrollbar {
+    width: 6px; /* Customize scrollbar width */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(208, 188, 181, 0.5);
+    /* Customize scrollbar track color */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #1c1673; /* Customize scrollbar thumb color */
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #101653;
+    cursor: pointer; /* Customize thumb color on hover */
+  }
+}
