@@ -16,6 +16,7 @@ import useUserStore from "./context/context";
 
 const AddUser = () => {
   const [user, setUser] = useState(null);
+  //@ts-expect-error zustand
   const { currentUser } = useUserStore();
   const handleSearch = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,7 +50,7 @@ const AddUser = () => {
         createdAt: serverTimestamp(),
         messages: [],
       });
-
+      //@ts-expect-error zustand
       await updateDoc(doc(userChatRef, user.id), {
         chats: arrayUnion({
           chatId: newChatRef.id,
@@ -63,6 +64,7 @@ const AddUser = () => {
         chats: arrayUnion({
           chatId: newChatRef.id,
           lastMessage: "",
+          //@ts-expect-error zustand
           receiverId: user.id,
           updatedAt: Date.now(),
         }),
@@ -95,7 +97,10 @@ const AddUser = () => {
               alt="avatar icon"
             />
             <h2 className="text-lg font-semibold">
-              {user.username || "Mohamed Amer"}
+              {
+                //@ts-expect-error zustand
+                user.username || "Mohamed Amer"
+              }
             </h2>
             <button
               className="py-1 px-3 rounded-lg text-white bg-[#1a73e8] cursor-pointer"

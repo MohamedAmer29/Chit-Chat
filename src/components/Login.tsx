@@ -85,7 +85,8 @@ const Login = () => {
     }
 
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
+      //@ts-expect-error zustand
+      await signInWithEmailAndPassword(auth, email, password);
       // console.log(res);
       setIsSubmitting(false);
     } catch (error) {

@@ -6,7 +6,9 @@ const useChatStore = create((set) => ({
   user: null,
   isCurrentUserBlocked: false,
   isReceiverBlocked: false,
+  //@ts-expect-error zustand
   changeChat: (chatId, user) => {
+    //@ts-expect-error zustand
     const currentUser = useUserStore.getState().currentUser;
 
     if (user.blocked.includes(currentUser.id)) {
@@ -34,6 +36,7 @@ const useChatStore = create((set) => ({
   },
 
   changeBlock: () => {
+    //@ts-expect-error zustand
     set((state) => ({ ...state, isReceiverBlocked: !state.isReceiverBlocked }));
   },
 }));

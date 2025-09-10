@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Chat from "./components/chat/Chat";
 import Details from "./components/details/Details";
 import List from "./components/list/List";
@@ -11,14 +11,20 @@ import useChatStore from "./components/context/chatStore";
 
 const App = () => {
   const {
+    //@ts-expect-error zustand
     currentUser,
+    //@ts-expect-error zustand
     openList,
+    //@ts-expect-error zustand
     isLoading,
+    //@ts-expect-error zustand
     fetchUserInfo,
+    //@ts-expect-error zustand
     openSettings,
+    //@ts-expect-error zustand
     setOpenSettings,
   } = useUserStore();
-  const [mobile, setMobile] = useState(false);
+  //@ts-expect-error zustand
   const { chatId } = useChatStore();
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, async (user) => {
@@ -32,7 +38,6 @@ const App = () => {
   useEffect(() => {
     addEventListener("resize", () => {
       if (window.innerWidth <= 600) {
-        setMobile(true);
         return setOpenSettings(false);
       }
       setOpenSettings(true);

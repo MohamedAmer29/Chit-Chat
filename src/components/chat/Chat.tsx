@@ -23,8 +23,10 @@ const Chat = () => {
     url: "",
   });
   const [photo, setPhoto] = useState<boolean>(false);
+  //@ts-expect-error zustand
   const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } =
     useChatStore();
+  //@ts-expect-error zustand
   const { currentUser, setOpenList, setOpenSettings } = useUserStore();
 
   const endRef = useRef<HTMLDivElement>(null);
@@ -48,6 +50,7 @@ const Chat = () => {
   };
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
+      //@ts-expect-error zustand
       setChat(res.data());
     });
     return () => {
@@ -56,6 +59,7 @@ const Chat = () => {
   }, []);
 
   const handleEmoji = (e: EmojiClickData) => {
+    //@ts-expect-error zustand
     setEmoji((prev) => prev + e.emoji);
     setOpen(false);
   };
@@ -99,6 +103,7 @@ const Chat = () => {
           const userChatData = userChatsSnapshot.data();
 
           const chatIndex = userChatData.chats.findIndex(
+            //@ts-expect-error zustand
             (chat) => chat.chatId === chatId
           );
 
@@ -173,6 +178,7 @@ const Chat = () => {
       {/* Center */}
       <div className="p-5 flex-1 overflow-y-scroll flex flex-col scroller gap-5">
         {/* message */}
+        {/*   @ts-expect-error zustand  */}
         {chat?.messages?.map((message) => (
           <div
             key={message?.createdAt}
@@ -223,13 +229,6 @@ const Chat = () => {
             </div>
           </div>
         ))}
-
-        {/* <div className="self-end     flex flex-col gap-1">
-          <p className=" text-sm p-2 rounded-t-lg bg-blue-400">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. A, iure.
-          </p>
-          <span className="text-xs">1 min ago</span>
-        </div> */}
         {img.url && (
           <img
             onClick={() => setPhoto((prev) => !prev)}

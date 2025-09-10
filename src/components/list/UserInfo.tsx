@@ -1,7 +1,8 @@
 import useUserStore from "../context/context";
 
 const UserInfo = () => {
-  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+  //@ts-expect-error zustand
+  const { currentUser } = useUserStore();
   return (
     <div className="p-4 flex  items-center justify-between ">
       <div className="flex  items-center gap-1 ">

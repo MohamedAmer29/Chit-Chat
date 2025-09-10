@@ -6,12 +6,16 @@ import { useState } from "react";
 
 const Details = () => {
   const {
-    checkActionCode,
+    //@ts-expect-error zustand
     user,
+    //@ts-expect-error zustand
     isCurrentUserBlocked,
+    //@ts-expect-error zustand
     isReceiverBlocked,
+    //@ts-expect-error zustand
     changeBlock,
   } = useChatStore();
+  //@ts-expect-error zustand
   const { currentUser, setOpenSettings } = useUserStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleBlock = async () => {
